@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutosDAO {
 
@@ -19,7 +20,7 @@ public class ProdutosDAO {
 
     public void cadastrarProduto(Produto produto) {
 
-               String sql = "INSERT INTO produtos values(?,?,?,?)";
+        String sql = "INSERT INTO produtos values(?,?,?,?)";
 
         try {
 
@@ -37,12 +38,35 @@ public class ProdutosDAO {
         }
     }
 
-    /*
-    ArrayList<Produto> listagem = new ArrayList<>();
+    public List<Produto> getProduto() {
 
-    public ArrayList<Produto> listarProdutos() {
+        String sql = "SELECT * FROM produtos";
 
-        return listagem;
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+
+            List<Produto> listaFilmes = new ArrayList<>();
+
+            while (rs.next()) {
+
+                Produto produto = new Produto();
+
+                produto.setId(rs.getInt("id"));
+                produto.setNome(rs.getString("nome"));
+                produto.setValor(rs.getDouble("valor"));
+                produto.setStatus(rs.getNString("status"));
+
+                listaFilmes.add(produto);
+            }
+
+            return listaFilmes;
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            return null;
+        }
+
     }
-     */
 }
