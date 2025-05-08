@@ -1,7 +1,7 @@
 package telas;
 
 
-import classes.ProdutosDTO;
+import classes.Produto;
 import dao.ProdutosDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -191,7 +191,7 @@ public class listagemVIEW extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);
 
-            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
+            ArrayList<Produto> listagem = produtosdao.listarProdutos();
 
             for (int i = 0; i < listagem.size(); i++) {
                 model.addRow(new Object[]{

@@ -1,7 +1,7 @@
 package telas;
 
 
-import classes.ProdutosDTO;
+import classes.Produto;
 import dao.ProdutosDAO;
 
 
@@ -130,7 +130,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
+        Produto produto = new Produto();
         String nome = cadastroNome.getText();
         String valor = cadastroValor.getText();
         String status = "A Venda";

@@ -1,43 +1,52 @@
 package classes;
 
+public class Produto {
 
-public class ProdutosDTO {
-
-    private Integer id;
+    private int id;
     private String nome;
-    private Integer valor;
     private String status;
+    private double valor;
 
-    public Integer getId() {
+    public Produto() {
+    }
+
+    public Produto(int id, String nome, String status, double valor) {
+        this.id = id;
+        this.nome = nome;
+        this.status = status;
+        this.valor = valor;
+    }
+
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public Integer getValor() {
-        return valor;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setValor(Integer valor) {
-        this.valor = valor;
-    }
-
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
 }
