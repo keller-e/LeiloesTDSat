@@ -7,12 +7,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class listagemVIEW extends javax.swing.JFrame {
-    
+
     public void preencheTabela(List<Produto> produto) {
-        
+
         String colunas[] = {"ID", "Nome", "Valor", "Status"};
         String dados[][] = new String[produto.size()][colunas.length];
-        
+
         int i = 0;
         for (Produto p : produto) {
             dados[i] = new String[]{
@@ -23,25 +23,25 @@ public class listagemVIEW extends javax.swing.JFrame {
             };
             i++;
         }
-        
+
         DefaultTableModel model = new DefaultTableModel(dados, colunas);
         tblListaProdutos.setModel(model);
     }
-    
+
     public listagemVIEW() {
         initComponents();
-        
+
         ProdutosDAO dao = new ProdutosDAO();
         List<Produto> produto = dao.getProduto();
         preencheTabela(produto);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnVendas = new javax.swing.JButton();
+        btnConsultarVendas = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListaProdutos = new javax.swing.JTable();
@@ -57,13 +57,13 @@ public class listagemVIEW extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        btnVendas.setBackground(new java.awt.Color(255, 102, 0));
-        btnVendas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnVendas.setForeground(new java.awt.Color(255, 255, 255));
-        btnVendas.setText("Consultar Vendas");
-        btnVendas.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarVendas.setBackground(new java.awt.Color(255, 102, 0));
+        btnConsultarVendas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnConsultarVendas.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultarVendas.setText("Consultar Vendas");
+        btnConsultarVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVendasActionPerformed(evt);
+                btnConsultarVendasActionPerformed(evt);
             }
         });
 
@@ -120,7 +120,7 @@ public class listagemVIEW extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -149,7 +149,7 @@ public class listagemVIEW extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVendas)
+                    .addComponent(btnConsultarVendas)
                     .addComponent(btnVoltar))
                 .addGap(26, 26, 26))
         );
@@ -171,26 +171,26 @@ public class listagemVIEW extends javax.swing.JFrame {
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         int idVenda = Integer.parseInt(txtIdProdutoVenda.getText());
-        
+
         Produto produto = new Produto();
-        
+
         produto.setId(idVenda);
         produto.setStatus("Vendido");
-        
+
         ProdutosDAO produtosdao = new ProdutosDAO();
         produtosdao.venderProduto(produto);
         JOptionPane.showMessageDialog(null, "Mais uma venda! :)");
     }//GEN-LAST:event_btnVenderActionPerformed
 
-    private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
-    }//GEN-LAST:event_btnVendasActionPerformed
+    private void btnConsultarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarVendasActionPerformed
+        listagemVIEW vendas = new listagemVIEW();
+        vendas.setVisible(true);
+    }//GEN-LAST:event_btnConsultarVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
-    
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -223,7 +223,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVendas;
+    private javax.swing.JButton btnConsultarVendas;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
