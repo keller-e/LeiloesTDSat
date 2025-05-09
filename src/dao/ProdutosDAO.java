@@ -89,7 +89,7 @@ public class ProdutosDAO {
 
     }
 
-    public List<Produto> listarProdutosVendidos(){
+    public List<Produto> listarProdutosVendidos() {
 
         String sql = "SELECT * FROM produtos where status = 'Vendido'";
 

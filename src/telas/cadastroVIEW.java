@@ -171,17 +171,17 @@ public class cadastroVIEW extends javax.swing.JFrame {
 
                 ProdutosDAO produtodao = new ProdutosDAO();
                 produtodao.cadastrarProduto(produto);
-                
+
                 JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto!\nVerifique os dados digitados","ERRO",3);
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto!\nVerifique os dados digitados", "ERRO", 3);
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
-        listagemVIEW listagem = new listagemVIEW();
-        listagem.setVisible(true);
+        listagemVIEW listagemVendas = new listagemVIEW();
+        listagemVendas.setVisible(true);
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     public static void main(String args[]) {
