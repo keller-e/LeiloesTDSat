@@ -1,9 +1,38 @@
 package telas;
 
+import classes.Produto;
+import dao.ProdutosDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class listaVendasVIEW extends javax.swing.JFrame {
+
+    public void preencheTabela(List<Produto> produto) {
+
+        String colunas[] = {"ID", "Nome", "Valor", "Status"};
+        String dados[][] = new String[produto.size()][colunas.length];
+
+        int i = 0;
+        for (Produto p : produto) {
+            dados[i] = new String[]{
+                String.valueOf(p.getId()),
+                p.getNome(),
+                String.valueOf(p.getValor()),
+                p.getStatus()
+            };
+            i++;
+        }
+
+        DefaultTableModel model = new DefaultTableModel(dados, colunas);
+        tblListaVendas.setModel(model);
+    }
 
     public listaVendasVIEW() {
         initComponents();
+
+        ProdutosDAO dao = new ProdutosDAO();
+        List<Produto> produto = dao.listarProdutosVendidos();
+        preencheTabela(produto);
     }
 
     @SuppressWarnings("unchecked")
@@ -17,7 +46,7 @@ public class listaVendasVIEW extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -87,6 +116,7 @@ public class listaVendasVIEW extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
