@@ -120,6 +120,9 @@ public class listaVendasVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        listagemVIEW listaVIEW = new listagemVIEW();
+        listaVIEW.setVisible(true);
+
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
