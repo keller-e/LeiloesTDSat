@@ -69,4 +69,24 @@ public class ProdutosDAO {
         }
 
     }
+
+    public void venderProduto(Produto produto) {
+
+        String sql = "UPDATE produtos SET status = ? WHERE id=?";
+
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+
+            stmt.setString(1, produto.getStatus());
+            stmt.setInt(2, produto.getId());
+
+            stmt.execute();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao editar o filme: " + e.getMessage());
+        }
+
+    }
+
 }

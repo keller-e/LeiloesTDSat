@@ -3,15 +3,16 @@ package telas;
 import classes.Produto;
 import dao.ProdutosDAO;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class listagemVIEW extends javax.swing.JFrame {
-
+    
     public void preencheTabela(List<Produto> produto) {
-
+        
         String colunas[] = {"ID", "Nome", "Valor", "Status"};
         String dados[][] = new String[produto.size()][colunas.length];
-
+        
         int i = 0;
         for (Produto p : produto) {
             dados[i] = new String[]{
@@ -22,19 +23,19 @@ public class listagemVIEW extends javax.swing.JFrame {
             };
             i++;
         }
-
+        
         DefaultTableModel model = new DefaultTableModel(dados, colunas);
         tblListaProdutos.setModel(model);
     }
-
+    
     public listagemVIEW() {
         initComponents();
-
+        
         ProdutosDAO dao = new ProdutosDAO();
         List<Produto> produto = dao.getProduto();
         preencheTabela(produto);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,7 +48,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        id_produto_venda = new javax.swing.JTextPane();
+        txtIdProdutoVenda = new javax.swing.JTextPane();
         btnVender = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -97,7 +98,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Vender Produto (ID)");
 
-        jScrollPane2.setViewportView(id_produto_venda);
+        jScrollPane2.setViewportView(txtIdProdutoVenda);
 
         btnVender.setBackground(new java.awt.Color(51, 153, 0));
         btnVender.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
@@ -169,12 +170,16 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        String id = id_produto_venda.getText();
-
+        int idVenda = Integer.parseInt(txtIdProdutoVenda.getText());
+        
+        Produto produto = new Produto();
+        
+        produto.setId(idVenda);
+        produto.setStatus("Vendido");
+        
         ProdutosDAO produtosdao = new ProdutosDAO();
-
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        //listarProdutos();
+        produtosdao.venderProduto(produto);
+        JOptionPane.showMessageDialog(null, "Mais uma venda! :)");
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
@@ -185,7 +190,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
-
+    
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -221,7 +226,6 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btnVendas;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextPane id_produto_venda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -229,6 +233,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblListaProdutos;
+    private javax.swing.JTextPane txtIdProdutoVenda;
     // End of variables declaration//GEN-END:variables
 
 }
